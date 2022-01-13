@@ -1,0 +1,19 @@
+version: "3.3"
+services:
+  backend:
+    tty: true # 起動しっぱなし
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/var/www
+    networks:
+      super-network:
+        ipv4_address: 10.10.0.3
+    # command: python app.py
+
+networks:
+  super-network:
+    external: true
