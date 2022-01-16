@@ -12,13 +12,21 @@ def connect():
     )
     return conn
 
+def insert_employee(name, action):
+    conn = connect()
+    cur = conn.cursor()
+    print(name, action)
+    cur.execute("INSERT INTO employee (name, action) VALUES (%s, %s)", (name, action))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return "ok"
+
 def query_employees():
     conn = connect()
     cur = conn.cursor()
     cur.execute("SELECT * FROM employee;")
     rows = cur.fetchall() # 全ての従業員データを取得
+    cur.close()
+    conn.close()
     return rows
-
-# rows = query_employees()
-# print(type(rows))
-# print(rows)
