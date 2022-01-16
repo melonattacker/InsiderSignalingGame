@@ -1,13 +1,14 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import json
 from sqlclient import *
 from equ import *
 
 app = Flask(__name__)
-
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+CORS(
+    app,
+    supports_credentials=True
+) #これ
 
 @app.route("/employee", methods=["GET", "POST"])
 def employee():
