@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request, jsonify, send_file
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
 import json
 from sqlclient import *
@@ -12,7 +12,7 @@ app.config['UPLOAD_FOLDER'] = './uploads/'
 CORS(
     app,
     supports_credentials=True
-) #これ
+)
 
 def allowed_file(filename):
     return '.' in filename and \
@@ -23,6 +23,7 @@ def upload_and_send_file():
     if request.method == 'POST':
         # post requestにfile partがあるかチェック
         if 'file' not in request.files:
+            print("hogehoeg")
             return "No file part"
         file = request.files['file']
         # ファイル名のチェック
