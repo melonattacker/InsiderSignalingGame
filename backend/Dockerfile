@@ -8,7 +8,7 @@ COPY ./ ./
 RUN apk add --update \
     curl \
     build-base \
-    linux-headers \
+    linux-headers \ 
     gcc && \
     pip install -r requirements.txt
 
