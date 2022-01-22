@@ -8,7 +8,7 @@ CREATE TABLE employee
 (
     id       INT         NOT NULL AUTO_INCREMENT,
     name VARCHAR(60) NOT NULL,
-    action    INT         NOT NULL DEFAULT 0,
+    action VARCHAR(60) NOT NULL,
     PRIMARY KEY (id)
 ) DEFAULT CHARACTER SET=utf8mb4;
 
@@ -22,13 +22,13 @@ CREATE TABLE employee
 -- INSERT INTO employee (name, action) VALUES ("柴田 早江子", 2);
 -- INSERT INTO employee (name, action) VALUES ("佐野 飛成", 0);
 -- INSERT INTO employee (name, action) VALUES ("東福間 心花", 2);
-INSERT INTO employee (name, action) VALUES ("Alice", 0);
-INSERT INTO employee (name, action) VALUES ("Bob", 1);
-INSERT INTO employee (name, action) VALUES ("Jacob", 1);
-INSERT INTO employee (name, action) VALUES ("Noah", 1);
-INSERT INTO employee (name, action) VALUES ("Lucas", 2);
-INSERT INTO employee (name, action) VALUES ("Sophia", 2);
-INSERT INTO employee (name, action) VALUES ("Chloe", 1);
-INSERT INTO employee (name, action) VALUES ("Abigail", 2);
-INSERT INTO employee (name, action) VALUES ("Harry", 0);
-INSERT INTO employee (name, action) VALUES ("Charlie", 2);
+INSERT INTO employee (name, action) VALUES ("Alice", "Revoke");
+INSERT INTO employee (name, action) VALUES ("Bob", "Warn");
+INSERT INTO employee (name, action) VALUES ("Jacob", "Warn");
+INSERT INTO employee (name, action) VALUES ("Noah", "Warn");
+INSERT INTO employee (name, action) VALUES ("Lucas", "Keep");
+INSERT INTO employee (name, action) VALUES ("Sophia", "Keep");
+INSERT INTO employee (name, action) VALUES ("Chloe", "Warn");
+INSERT INTO employee (name, action) VALUES ("Abigail", "Keep");
+INSERT INTO employee (name, action) VALUES ("Harry", "Revoke");
+INSERT INTO employee (name, action) VALUES ("Charlie", "Keep");
