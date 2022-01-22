@@ -23,7 +23,6 @@ def upload_and_send_file():
     if request.method == 'POST':
         # post requestにfile partがあるかチェック
         if 'file' not in request.files:
-            print("hogehoeg")
             return "No file part"
         file = request.files['file']
         # ファイル名のチェック

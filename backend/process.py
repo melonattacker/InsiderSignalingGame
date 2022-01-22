@@ -26,7 +26,6 @@ def process(path, filename):
     lr.classes_ = np.array([0, 1])
 
     test_df = pd.read_csv(path+filename, index_col=0)
-    print(test_df)
     X_test = test_df[['O', 'C', 'E', 'A', 'N']]
     Y_prob = lr.predict_proba(X_test) # 推論
     Y_prob = np.delete(Y_prob, [1], 1)
