@@ -39,6 +39,10 @@ def process(path, filename):
 
     # 最適反応を計算
     test_df["best_response"] = test_df.apply(calc_best_response, params=params, axis=1)
+
+    # 不要な列を削除
+    test_df = test_df.drop(['c_a', 'v_r', 'v_w'], axis=1)
+
     # ファイルを保存
     filepath = path+"result_"+filename
     test_df.to_csv(filepath)
