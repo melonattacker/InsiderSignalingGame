@@ -12,20 +12,20 @@ services:
     networks:
       super-network:
         ipv4_address: 10.10.0.3
-    # command: python app.py
+    command: python3 app.py
 
-  mysql:
-    build:
-      context: .
-      dockerfile: ./mysql/Dockerfile
-    volumes:
-      - ./mysql/db:/docker-entrypoint-initdb.d
-    env_file:
-        ./mysql/.env
-    networks:
-      super-network:
-        ipv4_address: 10.10.0.4
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max_connections=1000
+  # mysql:
+  #   build:
+  #     context: .
+  #     dockerfile: ./mysql/Dockerfile
+  #   volumes:
+  #     - ./mysql/db:/docker-entrypoint-initdb.d
+  #   env_file:
+  #       ./mysql/.env
+  #   networks:
+  #     super-network:
+  #       ipv4_address: 10.10.0.4
+  #   command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max_connections=1000
 
   frontend:
     tty: true # 起動しっぱなし
@@ -34,7 +34,7 @@ services:
       dockerfile: ./frontend/Dockerfile
     volumes:
       - ./frontend:/usr/src/app
-    # command: sh -c "cd react-sample && yarn start"
+    command: sh -c "cd react-app && npm start"
     ports:
       - "3000:3000"
     networks:
