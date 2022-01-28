@@ -1,14 +1,41 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+import os
+from flask import Flask, request, jsonify, send_file
+from flask_cors import CORS, cross_origin
+from werkzeug.utils import secure_filename
 import json
 from sqlclient import *
-from equ import *
+from process import *
 
+ALLOWED_EXTENSIONS = {'csv'}
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = './uploads/'
 CORS(
     app,
     supports_credentials=True
-) #これ
+)
+
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/', methods=['GET', 'POST'])
+def upload_and_send_file():
+    if request.method == 'POST':
+        # post requestにfile partがあるかチェック
+        if 'file' not in request.files:
+            return "No file part"
+        file = request.files['file']
+        # ファイル名のチェック
+        if file.filename == '':
+            return "No selected file"
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            filepath = process(app.config['UPLOAD_FOLDER'], filename)
+            return send_file(
+                filepath, as_attachment=True
+            )
+
 
 @app.route("/employee", methods=["GET", "POST"])
 def employee():

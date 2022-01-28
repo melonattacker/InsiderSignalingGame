@@ -5,30 +5,41 @@ import { Container, Table } from 'react-bootstrap';
 class EmployeeList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { employees: []};
+        this.state = { };
     }
 
-    async componentDidMount() {
-        const response = await fetch("http://localhost:8080/employee");
-        const data = await response.json();
-        await this.setState({ employees: data })
-    }
+    getRows(csv) {
+        const rows = csv.split("\n");
+        let header;
+        let table = [];
+        rows.map(function (row, index) {
+            if(index === 0) {
+                header = row.split(",");
+            } else {
+                if(index !== rows.length-1) table.push(row.split(","))
+            }
+        });
+        return [header, table];
+    };
 
     render() {
+        const [header, table] = this.getRows(this.props.result);
         return (
             <Container className="p-3">
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                    <th>ID</th>
-                    <th>名前</th>
-                    <th>対応策</th>
+                        { header &&
+                            header.map((row, index) => {
+                                return <th key={index}>{row}</th>
+                            })
+                        }
                     </tr>
                 </thead>
                 <tbody>
-                    { this.state.employees && 
-                        this.state.employees.map((row, index) => {
-                            return <Employee id={row[0]} name={row[1]} action={row[2]} key={index} />;
+                    { table && 
+                        table.map((row, index) => {
+                            return <Employee name={row[0]} id={row[1]} O={row[2]} C={row[3]} E={row[4]} A={row[5]} N={row[6]} authority={row[7]} prob={row[8]} response={row[9]} key={index} />;
                         })
                     }
                 </tbody>

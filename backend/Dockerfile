@@ -1,19 +1,20 @@
-FROM python:3.9.2-alpine
+FROM ubuntu:18.04
 
 RUN mkdir /var/www
 WORKDIR /var/www
 
 COPY ./ ./
 
-RUN apk add --update \
+RUN apt-get update && \
+    apt-get install -y \
     curl \
-    build-base \
-    linux-headers \
-    gcc && \
-    pip install -r requirements.txt
+    python3 \
+    python3-pip && \ 
+    pip3 install -r requirements.txt
 
 RUN chmod 755 -R /var/www
-RUN adduser -D backend
+RUN groupadd -g 1000 backend && \
+    useradd -m -s /bin/bash -u 1000 -g 1000 backend
 USER backend
 
 # CMD ["uwsgi","--ini","/var/www/uwsgi.ini"]
