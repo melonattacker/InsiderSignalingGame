@@ -13,3 +13,9 @@ $ docker-compose up -d --build
 デモは `http://localhost:3000` から利用可能.
 
 サンプルデータは `./data` にある.
+
+curlを使用しても計算することができる.
+
+```
+$ curl -X POST -F file=@./data/test1.csv http://localhost:8080
+```
