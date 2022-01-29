@@ -1,7 +1,14 @@
 # InsiderSignalingGame
 
-## ファイルアップロード
+## デモの起動
 
 ```
-$ curl -X POST -F file=@./data/test.csv http://localhost:8080
+$ git clone https://github.com/melonattacker/InsiderSignalingGame.git
+$ cd InsiderSignalingGame
+$ docker-compose up -d --build
 ```
+
+## デモの利用
+デモは `http://localhost:3000` から利用可能.
+
+サンプルデータは `./data` にある.
