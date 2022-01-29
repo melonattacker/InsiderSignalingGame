@@ -3,7 +3,6 @@ from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
 import json
-from sqlclient import *
 from process import *
 
 ALLOWED_EXTENSIONS = {'csv'}
