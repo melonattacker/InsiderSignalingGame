@@ -5,6 +5,7 @@
 ```
 $ git clone https://github.com/melonattacker/InsiderSignalingGame.git
 $ cd InsiderSignalingGame
+$ make upnet
 $ docker-compose up -d --build
 ```
 
