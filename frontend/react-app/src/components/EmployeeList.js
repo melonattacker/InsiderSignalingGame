@@ -1,5 +1,4 @@
 import React from 'react';
-import Employee from './Employee';
 import { Container, Table } from 'react-bootstrap';
 
 class EmployeeList extends React.Component {
@@ -39,7 +38,15 @@ class EmployeeList extends React.Component {
                 <tbody>
                     { table && 
                         table.map((row, index) => {
-                            return <Employee name={row[0]} id={row[1]} O={row[2]} C={row[3]} E={row[4]} A={row[5]} N={row[6]} authority={row[7]} prob={row[8]} response={row[9]} key={index} />;
+                            return(
+                                <tr key={index}>
+                                    {
+                                        row.map((item, index) => {
+                                            return <td key={index}>{item}</td>;
+                                        })
+                                    }
+                                </tr>
+                            )
                         })
                     }
                 </tbody>

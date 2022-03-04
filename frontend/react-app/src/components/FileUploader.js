@@ -32,7 +32,7 @@ class FileUploader extends React.Component {
         return (
             <form onSubmit={this.handleSubmit}>
                 <input type='file' accept='.csv' ref={this.fileInput} />
-                <Button type="submit" variant="primary">送信</Button>
+                <Button type="submit" variant="outline-primary">送信</Button>
             </form>
         );
     }

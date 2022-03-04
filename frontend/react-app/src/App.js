@@ -20,11 +20,17 @@ class App extends React.Component {
       <div className="App">
         <AppBar />
         <br/>
-        <p class="fs-3"> CSVファイル送信 </p>
-        <FileUploader onChangeResult={this.handleChangeResult} />
-        <br/>
-        <p class="fs-3"> 結果 </p>
-        <EmployeeList result={this.state.result} />
+        <div className='upload'>
+          <h2> ファイル送信 </h2>
+          <FileUploader onChangeResult={this.handleChangeResult} />
+        </div>
+        <div className='result'>
+          <h2> 結果 </h2>
+          {
+              this.state.result !== "" &&
+              <EmployeeList result={this.state.result} />
+          }
+        </div>
       </div>
     );
   }

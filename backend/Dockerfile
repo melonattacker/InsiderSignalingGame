@@ -3,8 +3,6 @@ FROM ubuntu:18.04
 RUN mkdir /var/www
 WORKDIR /var/www
 
-COPY ./ ./
-
 RUN apt-get update && \
     apt-get install -y \
     curl \

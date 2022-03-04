@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+/* upload */
+.upload {
+  margin-bottom: 70px;
+}
+
+.upload h2 {
+  font-weight: bold;
+}
+
+/* result */
+.result h2 {
+  font-weight: bold;
+}
